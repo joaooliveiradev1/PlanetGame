@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#2196f3" />
+    <title>Planeta em Jogo • Aventuras com Theo</title>
+    <link rel="icon" href="assets/icone.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="sky-decoration">
+      <span>🌿</span><span>⭐</span><span>🌱</span><span>💧</span
+      ><span>☀️</span>
+    </div>
+    <div id="app" class="app">
+      <div id="home" class="screen">
+        <header class="topbar">
+          <div class="brand">
+            <div class="brand-mark">🌎</div>
+            <span>Planeta <b>em Jogo</b></span>
+          </div>
+          <div class="top-tag">🌿 Uma aventura sustentável</div>
+        </header>
+        <main>
+          <section class="hero">
+            <div class="hero-copy">
+              <div class="tagline">
+                ✨ Aprender também é uma grande aventura!
+              </div>
+              <img
+                class="hero-logo"
+                src="assets/logo.png"
+                alt="Planeta em Jogo"
+              />
+              <p>
+                Explore a natureza, cuide do planeta e divirta-se com o Theo em
+                <strong>4 aventuras diferentes!</strong>
+              </p>
+              <button id="play-btn" class="btn btn-sun btn-xl">
+                🎮 Começar a jogar <span>➜</span>
+              </button>
+              <div class="hero-note">
+                🌈 Diversão para pequenos guardiões da natureza
+              </div>
+            </div>
+            <div class="hero-art">
+              <div class="hero-halo"></div>
+              <div class="hero-spark s1">🌟</div>
+              <div class="hero-spark s2">🌿</div>
+              <div class="hero-spark s3">💚</div>
+              <img
+                src="assets/theo.png"
+                alt="Theo, o personagem principal"
+                class="hero-theo"
+              />
+              <div class="speech">
+                Oi! Eu sou o <b>Theo!</b><br />Vamos brincar? 🌎
+              </div>
+            </div>
+          </section>
+          <section id="choices" class="choices">
+            <div class="section-heading">
+              <div>
+                <div class="eyebrow">ESCOLHA SUA AVENTURA</div>
+                <h2>Qual missão vamos jogar? 🌟</h2>
+              </div>
+              <p>Você pode jogar em qualquer ordem!</p>
+            </div>
+            <div class="game-grid" id="game-grid"></div>
+          </section>
+        </main>
+        <footer>
+          Feito com carinho para aprender a cuidar do nosso planeta 🌍
+        </footer>
+      </div>
+      <div id="game-screen" class="screen hidden">
+        <header class="game-topbar">
+          <button class="icon-btn" id="back-btn" aria-label="Voltar ao menu">
+            ←
+          </button>
+          <div class="game-heading">
+            <span id="game-icon">🌱</span>
+            <div>
+              <div class="game-kicker">AVENTURA DO THEO</div>
+              <h1 id="game-title"></h1>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-small" id="restart-btn">
+            ↻ Reiniciar
+          </button>
+        </header>
+        <main class="game-main">
+          <div class="game-tip" id="game-tip"></div>
+          <div id="game-area" class="game-area"></div>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

@@ -23,6 +23,8 @@ export const setArea = (html) => {
 export function message(msg, good = true, selector = "#message") {
   const el = $(selector);
   if (!el) return;
+  el.setAttribute("role", good ? "status" : "alert");
+  el.setAttribute("aria-live", good ? "polite" : "assertive");
   el.textContent = msg;
   el.className = "notice " + (good ? "good" : "bad");
 }

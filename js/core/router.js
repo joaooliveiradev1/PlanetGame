@@ -43,8 +43,9 @@ export function finish(heading, detail) {
   state.finished = true;
   const overlay = document.createElement("div");
   overlay.className = "result-overlay";
-  overlay.innerHTML = `<div class="result-dialog"><img src="assets/theo.png" alt="Theo feliz"><h2>${heading}</h2><p>${detail}</p><div class="btn-row"><button id="again" class="btn">↻ Jogar de novo</button><button id="to-menu" class="btn btn-outline">🏡 Outros jogos</button></div></div>`;
+  overlay.innerHTML = `<div class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="result-title" aria-describedby="result-detail"><img src="assets/theo.png" alt="Theo feliz"><h2 id="result-title" tabindex="-1">${heading}</h2><p id="result-detail">${detail}</p><div class="btn-row"><button id="again" class="btn">↻ Jogar de novo</button><button id="to-menu" class="btn btn-outline">🏡 Outros jogos</button></div></div>`;
   $("#game-area").appendChild(overlay);
+  overlay.querySelector("#result-title").focus();
   $("#again").onclick = () => openGame(state.current);
   $("#to-menu").onclick = showHome;
 }

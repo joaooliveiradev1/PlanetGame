@@ -258,7 +258,8 @@ function initQuiz() {
 
 // 3 — FÁBRICA
 function initFactory() {
-  let idx = 0;
+  let idx = 0,
+    answered = false;
   const items = shuffle([
     ["📰", "Jornal", "papel"],
     ["📦", "Caixa de papelão", "papel"],
@@ -276,28 +277,49 @@ function initFactory() {
     ["metal", "Metal", "🟡", "#dfac0d"],
   ];
   function draw() {
+    answered = false;
     const item = items[idx];
     setArea(
-      `<div class="game-wrap"><div class="status-line"><span class="status-pill">Objeto ${idx + 1} de ${items.length}</span><span class="tiny-help">♻️ Separe pelo material do objeto</span></div><h2 class="panel-title">🏭 Esteira da Reciclagem</h2><p class="panel-subtitle">Uma máquina traz os objetos. Escolha qual lixeira deve recebê-los!</p><div class="belt"><div class="belt-item"><div class="card-icon">${item[0]}</div><strong>${item[1]}</strong></div></div><div class="bins">${bins.map((b) => `<button class="bin" style="--bin:${b[3]}" data-bin="${b[0]}"><span>${b[2]}</span>${b[1]}</button>`).join("")}</div><div id="message"></div></div>`,
+      `<div class="game-wrap"><div class="status-line"><span class="status-pill">Objeto ${idx + 1} de ${items.length}</span><span class="tiny-help">♻️ Separe pelo material do objeto</span></div><h2 class="panel-title">🏭 Esteira da Reciclagem</h2><p class="panel-subtitle">Uma máquina traz os objetos. Escolha qual lixeira deve recebê-los!</p><div class="belt"><div class="belt-item"><div class="card-icon">${item[0]}</div><strong>${item[1]}</strong></div></div><div class="bins">${bins.map((b) => `<button class="bin" style="--bin:${b[3]}" data-bin="${b[0]}"><span>${b[2]}</span>${b[1]}</button>`).join("")}</div><div id="message"></div><div class="btn-row" id="next-holder"></div></div>`,
     );
-    $$("[data-bin]").forEach(
+    $("[data-bin]").forEach(
       (b) =>
         (b.onclick = () => {
+          if (answered) return;
           if (b.dataset.bin === item[2]) {
-            idx++;
-            if (idx >= items.length)
-              finish(
-                "Reciclagem completa! ♻️",
-                "Você separou todos os materiais da esteira para a coleta seletiva.",
-              );
-            else draw();
-          } else
+            answered = true;
+            const names = { papel: "papel", plastico: "plástico", vidro: "vidro", metal: "metal" };
+            const learning = {
+              papel: "Papel e papelão limpos podem ser separados para reciclagem.",
+              plastico: "Separar o plástico ajuda a coleta seletiva.",
+              vidro: "O vidro tem uma lixeira própria. Cacos devem ser manuseados por um adulto.",
+              metal: "Latas podem ser separadas para a reciclagem de metais.",
+            };
+            message("Muito bem! " + item[1] + " é de " + names[item[2]] + ". " + learning[item[2]]);
+            $('[data-bin]').forEach((button) => { button.disabled = true; });
+            const next = document.createElement("button");
+            next.type = "button";
+            next.className = "btn";
+            next.id = "next-object";
+            next.textContent = idx === items.length - 1 ? "Concluir aventura ➜" : "Próximo objeto ➜";
+            $("#next-holder").appendChild(next);
+            next.onclick = () => {
+              idx++;
+              if (idx >= items.length)
+                finish(
+                  "Reciclagem completa! ♻️",
+                  "Você separou todos os materiais da esteira e aprendeu sobre cada um deles!",
+                );
+              else draw();
+            };
+          } else {
             message(
               "Observe o material! " +
                 item[1] +
                 " não pertence a essa lixeira. Tente outra!",
               false,
             );
+          }
         }),
     );
   }

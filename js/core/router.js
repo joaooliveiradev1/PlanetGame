@@ -1,8 +1,10 @@
 import { $, $$ } from "./dom.js";
 import { cleanup, state } from "./lifecycle.js";
 import { GAMES } from "../data/games.js";
+import { attachPipesAudio } from "./audio.js";
 
 const inits = {};
+
 export const registerGames = (map) => Object.assign(inits, map);
 
 export function renderMenu() {
@@ -10,42 +12,86 @@ export function renderMenu() {
     (g) =>
       `<button type="button" class="game-card" style="--tint:${g.tint};--card-color:${g.color}" data-game="${g.id}"><span class="card-category">${g.category}</span><div class="card-art">${g.icon}</div><div class="text"><h3>${g.name}</h3><p>${g.desc}</p></div><span class="card-go">↗</span></button>`,
   ).join("");
-  $$(".game-card").forEach((el) =>
-    el.addEventListener("click", () => openGame(el.dataset.game)),
-  );
+
+  $$(".game-card").forEach((el) => {
+    el.addEventListener("click", () => openGame(el.dataset.game));
+  });
 }
 
 export function showHome() {
   cleanup();
   state.current = null;
+
   $("#game-screen").classList.add("hidden");
   $("#home").classList.remove("hidden");
+
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 export function openGame(id) {
+  const game = GAMES.find((item) => item.id === id);
+
+  if (!game || !inits[id]) return;
+
   cleanup();
-  const g = GAMES.find((x) => x.id === id);
-  if (!g || !inits[id]) return;
   state.current = id;
+
   $("#home").classList.add("hidden");
   $("#game-screen").classList.remove("hidden");
-  $("#game-title").textContent = g.name;
-  $("#game-icon").textContent = g.icon;
-  $("#game-tip").textContent = g.tip;
-  $("#game-area").className = "game-area " + g.theme;
+  $("#game-title").textContent = game.name;
+  $("#game-icon").textContent = game.icon;
+  $("#game-tip").textContent = game.tip;
+  $("#game-area").className = "game-area " + game.theme;
+
   window.scrollTo({ top: 0, behavior: "instant" });
+
   inits[id]();
+
+  if (id === "pipes") {
+    attachPipesAudio($("#game-area"));
+  }
 }
 
 export function finish(heading, detail) {
   if (state.finished) return;
+
   state.finished = true;
+
   const overlay = document.createElement("div");
   overlay.className = "result-overlay";
-  overlay.innerHTML = `<div class="result-dialog" role="dialog" aria-modal="true" aria-labelledby="result-title" aria-describedby="result-detail"><img src="assets/theo.png" alt="Theo feliz"><h2 id="result-title" tabindex="-1">${heading}</h2><p id="result-detail">${detail}</p><div class="btn-row"><button id="again" class="btn">↻ Jogar de novo</button><button id="to-menu" class="btn btn-outline">🏡 Outros jogos</button></div></div>`;
+
+  overlay.innerHTML = `
+    <div
+      class="result-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="result-title"
+      aria-describedby="result-detail"
+    >
+      <img src="assets/theo.png" alt="Theo feliz">
+
+      <h2 id="result-title" tabindex="-1">${heading}</h2>
+      <p id="result-detail">${detail}</p>
+
+      <div class="btn-row">
+        <button type="button" id="again" class="btn">
+          ↻ Jogar de novo
+        </button>
+
+        <button
+          type="button"
+          id="to-menu"
+          class="btn btn-outline"
+        >
+          🏡 Outros jogos
+        </button>
+      </div>
+    </div>
+  `;
+
   $("#game-area").appendChild(overlay);
+
   overlay.querySelector("#result-title").focus();
-  $("#again").onclick = () => openGame(state.current);
-  $("#to-menu").onclick = showHome;
+  overlay.querySelector("#again").onclick = () => openGame(state.current);
+  overlay.querySelector("#to-menu").onclick = showHome;
 }

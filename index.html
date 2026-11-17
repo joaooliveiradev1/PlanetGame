@@ -7,99 +7,158 @@
       content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
     <meta name="theme-color" content="#2196f3" />
-    <meta name="description" content="Aventuras educativas para crianças aprenderem a cuidar da natureza com o Theo." />
+    <meta
+      name="description"
+      content="Aventuras educativas para crianças aprenderem a cuidar da natureza com o Theo."
+    />
     <title>Planeta em Jogo • Aventuras com Theo</title>
     <link rel="icon" href="assets/icone.png" type="image/png" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <link rel="stylesheet" href="css/pages.css" />
   </head>
-  <body>
-    <div class="sky-decoration">
-      <span>🌿</span><span>⭐</span><span>🌱</span><span>💧</span
-      ><span>☀️</span>
+  <body class="home-page font-sans text-[#173f3b] antialiased">
+    <div class="home-scene" aria-hidden="true">
+      <div class="home-sun"></div>
+      <div class="cloud c1"></div>
+      <div class="cloud c2"></div>
+      <div class="cloud c3"></div>
+      <div class="hill back"></div>
+      <div class="hill front"></div>
     </div>
-    <div id="app" class="app">
-      <div id="home" class="screen">
-        <header class="topbar">
-          <div class="brand">
-            <div class="brand-mark">🌎</div>
-            <span>Planeta <b>em Jogo</b></span>
-          </div>
-          <div class="top-tag">🌿 Uma aventura sustentável</div>
-        </header>
-        <main>
-          <section class="hero">
-            <div class="hero-copy">
-              <div class="tagline">
-                ✨ Aprender também é uma grande aventura!
-              </div>
-              <img
-                class="hero-logo"
-                src="assets/logo.png"
-                alt="Planeta em Jogo"
-              />
-              <p>
-                Explore a natureza, cuide do planeta e divirta-se com o Theo em
-                <strong>4 aventuras diferentes!</strong>
-              </p>
-              <button id="play-btn" class="btn btn-sun btn-xl">
-                🎮 Começar a jogar <span>➜</span>
-              </button>
-              <div class="hero-note">
-                🌈 Diversão para pequenos guardiões da natureza
-              </div>
-            </div>
-            <div class="hero-art">
-              <div class="hero-halo"></div>
-              <div class="hero-spark s1">🌟</div>
-              <div class="hero-spark s2">🌿</div>
-              <div class="hero-spark s3">💚</div>
-              <img
-                src="assets/theo.png"
-                alt="Theo, o personagem principal"
-                class="hero-theo"
-              />
-              <div class="speech">
-                Oi! Eu sou o <b>Theo!</b><br />Vamos brincar? 🌎
-              </div>
-            </div>
-          </section>
-          <section id="choices" class="choices">
-            <div class="section-heading">
-              <div>
-                <div class="eyebrow">ESCOLHA SUA AVENTURA</div>
-                <h2>Qual missão vamos jogar? 🌟</h2>
-              </div>
-              <p>Você pode jogar em qualquer ordem!</p>
-            </div>
-            <div class="game-grid" id="game-grid"></div>
-          </section>
-        </main>
-        <footer>
-          Feito com carinho para aprender a cuidar do nosso planeta 🌍
-        </footer>
-      </div>
-      <div id="game-screen" class="screen hidden">
-        <header class="game-topbar">
-          <button class="icon-btn" id="back-btn" aria-label="Voltar ao menu">
-            ←
-          </button>
-          <div class="game-heading">
-            <span id="game-icon">🌱</span>
-            <div>
-              <div class="game-kicker">AVENTURA DO THEO</div>
-              <h1 id="game-title"></h1>
-            </div>
-          </div>
-          <button class="btn btn-outline btn-small" id="restart-btn">
-            ↻ Reiniciar
-          </button>
-        </header>
-        <main class="game-main">
-          <div class="game-tip" id="game-tip" role="note"></div>
-          <div id="game-area" class="game-area"></div>
-        </main>
-      </div>
+
+    <div
+      class="pointer-events-none fixed inset-0 z-0 overflow-hidden text-[32px] opacity-25"
+      aria-hidden="true"
+    >
+      <span class="absolute left-[2%] top-[22%] motion-safe:animate-float"
+        >🌿</span
+      >
+      <span class="absolute right-[5%] top-[15%] motion-safe:animate-float"
+        >⭐</span
+      >
+      <span class="absolute left-[3%] top-[68%] motion-safe:animate-float"
+        >🌱</span
+      >
+      <span class="absolute right-[4%] top-[82%] motion-safe:animate-float"
+        >💧</span
+      >
+      <span class="absolute right-[3%] top-[47%] motion-safe:animate-float"
+        >☀️</span
+      >
     </div>
-    <script type="module" src="js/main.js"></script>
+
+    <div
+      id="app"
+      class="relative z-10 mx-auto flex min-h-dvh max-w-[1380px] flex-col px-2 md:px-[18px]"
+    >
+      <header
+        class="sticky top-2 z-20 mx-1 mt-2 flex min-h-[68px] items-center justify-between gap-4 rounded-[28px] border-2 border-white/85 bg-white/55 px-4 py-2 shadow-[0_8px_22px_rgba(35,100,90,0.14)] backdrop-blur-md md:mx-3 md:mt-4 md:min-h-[78px] md:px-6"
+      >
+        <div
+          class="flex items-center gap-3 text-lg font-black tracking-tight text-[#1a4f44] md:text-2xl"
+        >
+          <div
+            class="grid size-[44px] place-items-center rounded-2xl bg-[#d9f3c4] text-2xl shadow-[0_3px_0_rgba(28,111,75,0.15)] md:size-[52px] md:text-3xl"
+            aria-hidden="true"
+          >
+            🌎
+          </div>
+          <span>Planeta <b class="text-[#168f5a]">em Jogo</b></span>
+        </div>
+        <div
+          class="hidden rounded-full border-2 border-white bg-[#fff5c7] px-4 py-2.5 text-[13px] font-extrabold text-[#6b5016] md:block"
+        >
+          🌿 Uma aventura sustentável
+        </div>
+      </header>
+
+      <main class="flex flex-1 flex-col justify-center py-3">
+        <h1 class="sr-only">Planeta em Jogo: aventuras com o Theo</h1>
+
+        <section
+          class="relative mx-1 grid overflow-hidden rounded-[27px] border-4 border-white/80 bg-linear-to-br from-[#d9f7fb] via-[#b8edfa] to-[#a4e7d0] shadow-[0_20px_42px_rgba(38,112,112,0.18)] md:mx-3 md:min-h-[430px] md:grid-cols-[52%_48%] md:rounded-[38px]"
+        >
+          <div
+            class="pointer-events-none absolute -bottom-36 -right-24 h-52 w-[620px] rounded-full bg-[#60c786]/80"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="pointer-events-none absolute -bottom-30 left-1/4 h-36 w-[560px] rounded-full bg-[#8bdd8e]"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="relative z-10 px-5 pb-3 pt-5 text-center md:py-9 md:pl-14 md:pr-0 md:text-left"
+          >
+            <div
+              class="inline-block rounded-full border border-[#f6e49b] bg-[#fff5c7] px-4 py-2 text-xs font-black text-[#72551b] md:text-[13px]"
+            >
+              ✨ Aprender também é uma grande aventura!
+            </div>
+            <img
+              class="mx-auto block h-40 w-[min(360px,92%)] object-contain md:-ml-2.5 md:mx-0 md:h-[190px]"
+              src="assets/logo.png"
+              alt="Planeta em Jogo"
+            />
+            <p
+              class="mx-auto mb-5 mt-0.5 max-w-[430px] text-[15px] leading-relaxed text-[#214d59] md:mx-0 md:text-lg"
+            >
+              Explore a natureza, cuide do planeta e divirta-se com o Theo em
+              <strong>4 aventuras diferentes!</strong>
+            </p>
+            <a
+              href="jogos.html"
+              class="mx-auto flex min-h-[58px] w-fit min-w-[250px] items-center justify-between gap-7 rounded-2xl bg-linear-to-b from-[#ffe26a] to-[#ffc52d] px-6 py-3.5 text-lg font-black text-[#244736] no-underline shadow-[0_5px_0_#dda31c] transition hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#f4bb37] active:translate-y-px active:shadow-[0_2px_0_#dda31c] motion-reduce:transition-none md:mx-0 md:min-w-[285px] md:text-xl"
+            >
+              <span>🎮 Começar a jogar</span> <span aria-hidden="true">➜</span>
+            </a>
+            <div class="mt-4 text-xs font-bold text-[#47756c] md:text-[13px]">
+              🌈 Diversão para pequenos guardiões da natureza
+            </div>
+          </div>
+
+          <div class="relative z-10 min-h-[270px] md:min-h-[430px]">
+            <div
+              class="absolute left-[19%] top-0 size-[250px] rounded-full bg-[radial-gradient(circle,#fffbdc_0%,rgba(244,255,199,0.68)_52%,transparent_74%)] md:left-[15%] md:top-[34px] md:size-[380px]"
+              aria-hidden="true"
+            ></div>
+            <div
+              class="absolute left-[15%] top-[115px] hidden text-4xl motion-safe:animate-float md:block"
+              aria-hidden="true"
+            >
+              🌟
+            </div>
+            <div
+              class="absolute bottom-[70px] right-[10%] hidden text-4xl motion-safe:animate-float md:block"
+              aria-hidden="true"
+            >
+              🌿
+            </div>
+            <div
+              class="absolute right-[7%] top-[220px] hidden text-4xl motion-safe:animate-float md:block"
+              aria-hidden="true"
+            >
+              💚
+            </div>
+            <img
+              src="assets/theo.png"
+              alt="Theo, o personagem principal"
+              class="absolute -bottom-2 left-[29%] h-[270px] object-contain drop-shadow-xl md:left-[17%] md:h-[390px]"
+            />
+            <div
+              class="absolute left-[4%] top-[18px] -rotate-3 rounded-[22px] border-2 border-[#c7eef0] bg-white px-4 py-3.5 text-xs font-extrabold leading-snug text-[#24586c] shadow-lg after:absolute after:-bottom-4 after:left-[28%] after:border-8 after:border-transparent after:border-t-white after:content-[''] md:left-auto md:right-[5%] md:top-[43px] md:rotate-3 md:text-base"
+            >
+              Oi! Eu sou o <b>Theo!</b><br />Vamos brincar? 🌎
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer
+        class="mx-auto mb-4 mt-2 w-fit max-w-[calc(100%-16px)] rounded-full border-2 border-white/80 bg-white/75 px-5 py-2.5 text-center text-xs font-bold text-[#2f6b4f] shadow-[0_4px_12px_rgba(35,100,90,0.12)] md:text-[13px]"
+      >
+        Feito com carinho para aprender a cuidar do nosso planeta 🌍
+      </footer>
+    </div>
   </body>
 </html>

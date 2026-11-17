@@ -1,0 +1,217 @@
+/* Utilitários compartilhados */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a.btn {
+  text-decoration: none;
+}
+a.btn-small {
+  display: inline-flex;
+  align-items: center;
+}
+a.brand {
+  color: inherit;
+  text-decoration: none;
+}
+.hero-copy a.btn-xl {
+  width: fit-content;
+}
+
+/* Cenário (início e jogos) */
+.home-page,
+.games-page {
+  background: linear-gradient(
+      180deg,
+      #7fd6f5 0%,
+      #bdeefb 38%,
+      #e6fbe0 68%,
+      #b9e7a0 100%
+    )
+    fixed;
+}
+
+.home-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.home-sun {
+  position: absolute;
+  top: 70px;
+  right: 8%;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6b0 0 45%, #ffd84d 46% 100%);
+  box-shadow: 0 0 70px 30px rgba(255, 226, 106, 0.45);
+}
+
+.cloud {
+  position: absolute;
+  width: 150px;
+  height: 46px;
+  border-radius: 50px;
+  background: #fff;
+  opacity: 0.92;
+  animation: cloud-drift 60s linear infinite alternate;
+}
+.cloud:before,
+.cloud:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+}
+.cloud:before {
+  width: 62px;
+  height: 62px;
+  top: -30px;
+  left: 24px;
+}
+.cloud:after {
+  width: 46px;
+  height: 46px;
+  top: -20px;
+  left: 78px;
+}
+.cloud.c1 {
+  top: 16%;
+  left: 6%;
+}
+.cloud.c2 {
+  top: 30%;
+  right: 12%;
+  scale: 0.8;
+  animation-duration: 80s;
+}
+.cloud.c3 {
+  top: 8%;
+  left: 44%;
+  scale: 0.6;
+  animation-duration: 95s;
+}
+@keyframes cloud-drift {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 70px 0;
+  }
+}
+
+.hill {
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+}
+.hill.back {
+  left: -10%;
+  bottom: -8vh;
+  width: 120%;
+  height: 30vh;
+  background: #8fd88a;
+}
+.hill.front {
+  left: -25%;
+  bottom: -14vh;
+  width: 95%;
+  height: 28vh;
+  background: #5fc27a;
+}
+
+/* Página de jogos: header flutuante e altura da tela */
+.games-page .app {
+  min-height: 100dvh;
+}
+.games-page #home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+.games-page #home main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.games-page .topbar,
+.games-page .game-topbar {
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  margin: 8px 4px 0;
+  min-height: 76px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 22px rgba(35, 100, 90, 0.14);
+}
+.games-page .brand {
+  font-size: 22px;
+}
+
+.games-page .choices {
+  padding-top: 20px;
+}
+.games-page .eyebrow {
+  color: #17653f;
+}
+.games-page .section-heading h2 {
+  color: #173f3b;
+}
+.games-page .section-heading p {
+  color: #1e4b42;
+}
+
+.games-page footer {
+  width: fit-content;
+  max-width: calc(100% - 16px);
+  margin: 8px auto 18px;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #2f6b4f;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(35, 100, 90, 0.12);
+}
+
+@media (max-width: 700px) {
+  .home-sun {
+    top: 90px;
+    width: 80px;
+    height: 80px;
+  }
+  .cloud.c2,
+  .cloud.c3 {
+    display: none;
+  }
+  .games-page .topbar,
+  .games-page .game-topbar {
+    min-height: 64px;
+    margin: 6px 2px 0;
+    border-radius: 22px;
+  }
+  .games-page .brand {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud {
+    animation: none;
+  }
+}

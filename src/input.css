@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@source "../index.html";
+
+@theme {
+  --font-sans: "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --animate-float: float 4s ease-in-out infinite alternate;
+
+  @keyframes float {
+    from {
+      transform: translateY(-4px) rotate(-5deg);
+    }
+    to {
+      transform: translateY(7px) rotate(5deg);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud {
+    animation: none;
+  }
+}

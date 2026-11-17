@@ -26,11 +26,11 @@ export const GAMES = [
     icon: "💧",
     name: "Gota a Gota",
     category: "Água",
-    desc: "Conecte os canos para levar água.",
+    desc: "Leve a água do rio até a horta.",
     color: "#168bd2",
     tint: "#e0f3ff",
     theme: "theme-water",
-    tip: "Toque nos canos para girá-los. Faça a água sair da torneira azul e chegar à horta sem vazar.",
+    tip: "Toque nos canos para girá-los. Ligue o rio, à esquerda, à horta, à direita, e aperte “Soltar a água”.",
   },
   {
     id: "garden",

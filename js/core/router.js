@@ -40,7 +40,14 @@ export function openGame(id) {
   $("#game-screen").classList.remove("hidden");
   $("#game-title").textContent = game.name;
   $("#game-icon").textContent = game.icon;
-  $("#game-tip").textContent = game.tip;
+  const gameTip = $("#game-tip");
+
+  if (id === "garden") {
+    gameTip.style.display = "none";
+  } else {
+    gameTip.style.display = "";
+    gameTip.textContent = game.tip;
+  }
   $("#game-area").className = "game-area " + game.theme;
 
   window.scrollTo({ top: 0, behavior: "instant" });

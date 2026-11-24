@@ -34,8 +34,8 @@ export const GAMES = [
   },
   {
     id: "garden",
-    icon: "🌻",
-    name: "Jardim do Theo",
+    icon: "🌵",
+    name: "Memória da Caatinga",
     category: "Plantas",
     desc: "Cuide das plantas com sol e chuva.",
     color: "#2aa956",
